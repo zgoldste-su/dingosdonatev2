@@ -66,7 +66,7 @@ export default function Home() {
       const web3 = await Moralis.enableWeb3();
       //const contract = new web3.eth.Contract(contractAbi, contractAddress);
       const options = {type: "erc20", 
-        amount: Moralis.Units.Token("0.5", "1"), 
+        amount: Moralis.Units.Token("0.5", "18"), 
         receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
         contractAddress: "0x03ff0ff224f904be3118461335064bb48df47938"}
       let result = await Moralis.transfer(options)
