@@ -58,7 +58,7 @@ export default function Home() {
     }
   
 
-
+*/
     
   async function disconnect() {
     try {
@@ -66,7 +66,7 @@ export default function Home() {
     } catch (ex) {
       console.log(ex)
     }
-  } */
+  } 
 
   //fix meeee
   
