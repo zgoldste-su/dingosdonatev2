@@ -5,6 +5,8 @@ import detectEthereumProvider from '@metamask/detect-provider';
 
 import React, { useEffect } from "react";
 
+//import {web3} from "web3-utils";
+
 
 
 export default function Home() {
@@ -47,7 +49,7 @@ export default function Home() {
       gas: '0x2710', // customizable by user during MetaMask confirmation.
       to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
       from: ethereum.selectedAddress, // must match user's active address.
-      value: '0x00', // Only required to send ether to the recipient from the initiating external account.
+      value: '0x' + (50000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
       chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
     };
   
