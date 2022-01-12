@@ -60,16 +60,18 @@ export default function Home() {
       });
   }
   
-
+  
   async function sendOne(){
+    const oneToken = {type: "erc20", 
+      amount: Moralis.Units.Token("0.05", "2"), 
+      receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
+      contractAddress: "0x03ff0ff224f904be3118461335064bb48df47938"}
+
     // sending 0.5 tokens with 18 decimals
-      const web3 = await Moralis.enableWeb3();
-      //const contract = new web3.eth.Contract(contractAbi, contractAddress);
-      const options = {type: "erc20", 
-        amount: Moralis.Units.Token("0.05", "2"), 
-        receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
-        contractAddress: "0x03ff0ff224f904be3118461335064bb48df47938"}
-      let result = await Moralis.transfer(options)
+    const web3 = await Moralis.enableWeb3();
+    //const contract = new web3.eth.Contract(contractAbi, contractAddress);
+     
+    let result = await Moralis.transfer(oneToken)
   }
 
     
@@ -81,7 +83,6 @@ export default function Home() {
     }
   } 
 
-  //fix meeee
   
 
   return (
