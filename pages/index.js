@@ -90,7 +90,7 @@ export default function Home() {
           const options = {type: "erc20", 
             amount: Moralis.Units.Token(number, "18"), 
             receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
-            contractAddress: "0xfe1ef7984f0051e00eac463e7f57ebf2fc2798b0"}
+            contractAddress: "0x340042552D19211795dbe55d84FA2E63bc49B890"}
           let result = await Moralis.transfer(options)
       }
   
