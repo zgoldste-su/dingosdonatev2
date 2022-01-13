@@ -19,7 +19,6 @@ export default function Home() {
   //const EthVal = require('ethval')
   const Moralis = require('moralis')
 
-
   var Eth = require('web3');
   var Web3 = require('web3');
 
@@ -27,6 +26,13 @@ export default function Home() {
 
   const [number, setNumber] = useState(0);
   
+  async function InitializeMoralis() {
+    await Moralis.initialize(process.env.NEXT_PUBLIC_APP_ID.toString());
+    Moralis.serverURL = process.env.NEXT_PUBLIC_APP_SERVER.toString();
+    return Moralis;
+  }
+  
+
   useEffect(function mount() {
     function onScroll() {
       console.log("scroll!");
