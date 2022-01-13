@@ -66,25 +66,6 @@ export default function Home() {
 
   Moralis.enableWeb3();
 
-  async function sendOne(){
-
-    const transactionParameters = {
-      // nonce: '0x00', // ignored by MetaMask
-      // gasPrice: gasPriceToHex, // customizable by user during MetaMask confirmation.
-      // gas: '0x2710', // customizable by user during MetaMask confirmation.
-      to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
-      from: ethereum.selectedAddress,
-      value: Web3.utils.numberToHex(number+'000000000000000000'), // Only required to send ether to the recipient from the initiating external account.
-      //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
-      chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
-    };
-
-      const txHash = await ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [transactionParameters],
-      });
-  }
-
   const small = new BigNumber(number)
   
   async function sendXya(){
@@ -119,6 +100,28 @@ export default function Home() {
         let result = await Moralis.transfer(options)
     }
 
+
+
+  async function sendOne(){
+
+    const transactionParameters = {
+      // nonce: '0x00', // ignored by MetaMask
+      // gasPrice: gasPriceToHex, // customizable by user during MetaMask confirmation.
+      // gas: '0x2710', // customizable by user during MetaMask confirmation.
+      to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
+      from: ethereum.selectedAddress,
+      value: Web3.utils.numberToHex(number+'000000000000000000'), // Only required to send ether to the recipient from the initiating external account.
+      //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
+      chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+    };
+
+      const txHash = await ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [transactionParameters],
+      });
+  }
+
+  
 
 
   
