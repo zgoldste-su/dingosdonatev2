@@ -53,6 +53,8 @@ export default function Home() {
       value: '0x' + (50000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
       chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
     };
+
+    
   
       const txHash = await ethereum.request({
         method: 'eth_sendTransaction',
@@ -60,19 +62,48 @@ export default function Home() {
       });
   }
   
-  
+
+
+ 
+
   async function sendOne(){
+
+    const transactionParameters = {
+      // nonce: '0x00', // ignored by MetaMask
+      // gasPrice: gasPriceToHex, // customizable by user during MetaMask confirmation.
+      // gas: '0x2710', // customizable by user during MetaMask confirmation.
+      to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
+      // from: ethereum.selectedAddress, // must match user's active address.
+      from: ethereum.selectedAddress,
+      value: '0x' + (5000000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
+      //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
+      chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+    };
+
+      const txHash = await ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [transactionParameters],
+      });
+  }
+  
+
+
+
+
+  /* async function sendOne(){
+      
+
     const oneToken = {type: "erc20", 
-      amount: Moralis.Units.Token("0.05", "2"), 
+      amount: Moralis.Units.Token("3", "18"), 
       receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
-      contractAddress: "0x03ff0ff224f904be3118461335064bb48df47938"}
+      contractAddress: "0xcf664087a5bb0237a0bad6742852ec6c8d69a27a"}
 
     // sending 0.5 tokens with 18 decimals
     const web3 = await Moralis.enableWeb3();
     //const contract = new web3.eth.Contract(contractAbi, contractAddress);
      
     let result = await Moralis.transfer(oneToken)
-  }
+  } */
 
     
   async function disconnect() {
