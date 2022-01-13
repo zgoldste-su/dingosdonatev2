@@ -13,7 +13,7 @@ export default function Home() {
   const { useWeb3React } = require("@web3-react/core");
   const { active, account, library, connector, activate, deactivate } = useWeb3React();
   const { ethers } = require("ethers");
-  const Moralis = require('moralis')
+  //const Moralis = require('moralis')
 
 
   var Eth = require('web3');
@@ -42,10 +42,8 @@ export default function Home() {
   }
   
 
-  const numberField = props => {
-    const onChange = event => {
-      props.onChange(event.target.value);
-    };
+  const onNumberFieldChange = e => {
+    setNumber(e.target.value)
   }
   
   
