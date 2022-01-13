@@ -13,25 +13,28 @@ export default function Home() {
   const { useWeb3React } = require("@web3-react/core");
   const { active, account, library, connector, activate, deactivate } = useWeb3React();
   const { ethers } = require("ethers");
+  //const EthVal = require('ethval')
   //const Moralis = require('moralis')
 
 
   var Eth = require('web3');
+  var Web3 = require('web3');
 
   var ethereum;
+
+  const [number, setNumber] = useState(0);
   
-   useEffect(function mount() {
-      function onScroll() {
-        console.log("scroll!");
-      }
-      ethereum = window.ethereum;
-      window.addEventListener("scroll", onScroll);
+  useEffect(function mount() {
+    function onScroll() {
+      console.log("scroll!");
+    }
+    ethereum = window.ethereum;
+    window.addEventListener("scroll", onScroll);
 
-      return function unMount() {
-        window.removeEventListener("scroll", onScroll);
-      };
-    });
-
+    return function unMount() {
+      window.removeEventListener("scroll", onScroll);
+    };
+  });
 
   async function connect() {
     try {
@@ -41,13 +44,9 @@ export default function Home() {
     }
   }
   
-
   const onNumberFieldChange = e => {
     setNumber(e.target.value)
   }
-  
-  
-
 
   async function sendOne(){
 
@@ -57,7 +56,7 @@ export default function Home() {
       // gas: '0x2710', // customizable by user during MetaMask confirmation.
       to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
       from: ethereum.selectedAddress,
-      value: '0x' + (5000000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
+      value: Web3.utils.numberToHex(number+'000000000000000000'), // Only required to send ether to the recipient from the initiating external account.
       //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
       chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
     };
@@ -67,8 +66,6 @@ export default function Home() {
         params: [transactionParameters],
       });
   }
-  
-
     
   async function disconnect() {
     try {
@@ -77,8 +74,6 @@ export default function Home() {
       console.log(ex)
     }
   } 
-
-  
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -92,7 +87,7 @@ export default function Home() {
           noValidate
           autoComplete="off"
       >
-      <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"}/>
+        <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
       </Box>
       <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send ONE</button>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
