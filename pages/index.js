@@ -138,10 +138,10 @@ export default function Home() {
       </Box>
       <Box sx={{ m: 1, width: '25ch'  }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Select token to send</InputLabel>
+        <InputLabel id="select-token-label">Select Token</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="select-token-label"
+          id="select-token"
           value={sendTok}
           label="SendTok"
           onChange={handleChange}
