@@ -3,9 +3,10 @@ import { injected } from "../components/wallet/connectors"
 
 import detectEthereumProvider from '@metamask/detect-provider';
 
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
-//import {web3} from "web3-utils";
 
 
 export default function Home() {
@@ -39,7 +40,17 @@ export default function Home() {
       console.log(ex)
     }
   }
- 
+  
+
+
+  
+  const numberField = props => {
+    const onChange = event => {
+      props.onChange(event.target.value);
+    };
+  }
+  
+
 
   async function sendOne(){
 
@@ -49,7 +60,7 @@ export default function Home() {
       // gas: '0x2710', // customizable by user during MetaMask confirmation.
       to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
       from: ethereum.selectedAddress,
-      value: '0x' + (5000000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
+      value: ethers.utils.parseEther(), // Only required to send ether to the recipient from the initiating external account. '0x' + (5000000000000000000).toString(16)
       //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
       chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
     };
@@ -60,8 +71,6 @@ export default function Home() {
       });
   }
   
-
-
 
     
   async function disconnect() {
@@ -77,8 +86,18 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center">
       <button onClick={connect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Connect to MetaMask</button>
-      {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, Please change to Harmony Mainnet</span>}
-      <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send 5 ONE</button>
+      {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, please change to Harmony Mainnet</span>}
+      <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+      >
+      <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"}/>
+      </Box>
+      <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send ONE</button>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
     </div>
   )
