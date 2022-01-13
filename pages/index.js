@@ -42,13 +42,12 @@ export default function Home() {
   }
   
 
-
-  
   const numberField = props => {
     const onChange = event => {
       props.onChange(event.target.value);
     };
   }
+  
   
 
 
@@ -60,7 +59,7 @@ export default function Home() {
       // gas: '0x2710', // customizable by user during MetaMask confirmation.
       to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
       from: ethereum.selectedAddress,
-      value: ethers.utils.parseEther(), // Only required to send ether to the recipient from the initiating external account. '0x' + (5000000000000000000).toString(16)
+      value: '0x' + (5000000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
       //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
       chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
     };
