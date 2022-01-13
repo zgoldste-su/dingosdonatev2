@@ -19,19 +19,20 @@ export default function Home() {
   var Eth = require('web3');
 
   var ethereum;
+
+  const [number, setNumber] = useState(0);
   
-   useEffect(function mount() {
-      function onScroll() {
-        console.log("scroll!");
-      }
-      ethereum = window.ethereum;
-      window.addEventListener("scroll", onScroll);
+  useEffect(function mount() {
+    function onScroll() {
+      console.log("scroll!");
+    }
+    ethereum = window.ethereum;
+    window.addEventListener("scroll", onScroll);
 
-      return function unMount() {
-        window.removeEventListener("scroll", onScroll);
-      };
-    });
-
+    return function unMount() {
+      window.removeEventListener("scroll", onScroll);
+    };
+  });
 
   async function connect() {
     try {
@@ -41,15 +42,9 @@ export default function Home() {
     }
   }
   
-
-  const numberField = props => {
-    const onChange = event => {
-      props.onChange(event.target.value);
-    };
+  const onNumberFieldChange = e => {
+    setNumber(e.target.value)
   }
-  
-  
-
 
   async function sendOne(){
 
@@ -69,8 +64,6 @@ export default function Home() {
         params: [transactionParameters],
       });
   }
-  
-
     
   async function disconnect() {
     try {
@@ -79,8 +72,6 @@ export default function Home() {
       console.log(ex)
     }
   } 
-
-  
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -94,7 +85,7 @@ export default function Home() {
           noValidate
           autoComplete="off"
       >
-      <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"}/>
+        <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
       </Box>
       <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send ONE</button>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
