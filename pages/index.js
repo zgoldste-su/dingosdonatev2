@@ -14,7 +14,7 @@ export default function Home() {
   const { active, account, library, connector, activate, deactivate } = useWeb3React();
   const { ethers } = require("ethers");
   //const EthVal = require('ethval')
-  //const Moralis = require('moralis')
+  const Moralis = require('moralis')
 
 
   var Eth = require('web3');
@@ -48,6 +48,8 @@ export default function Home() {
     setNumber(e.target.value)
   }
 
+  Moralis.enableWeb3();
+
   async function sendOne(){
 
     const transactionParameters = {
@@ -66,7 +68,32 @@ export default function Home() {
         params: [transactionParameters],
       });
   }
+
+  async function sendXya(){
     
+      const options = {type: "erc20", 
+        amount: Moralis.Units.Token(number, "18"), 
+        receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
+        contractAddress: "0x9b68BF4bF89c115c721105eaf6BD5164aFcc51E4"}
+      let result = await Moralis.transfer(options)
+  }
+  
+  async function sendYin(){
+        const options = {type: "erc20", 
+          amount: Moralis.Units.Token(number, "18"), 
+          receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
+          contractAddress: "0xE59AA7f9e91B4Cc6C25D3542CEcb851e0316138c"}
+        let result = await Moralis.transfer(options)
+    }
+
+    async function sendYang(){
+          const options = {type: "erc20", 
+            amount: Moralis.Units.Token(number, "18"), 
+            receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
+            contractAddress: "0xfe1ef7984f0051e00eac463e7f57ebf2fc2798b0"}
+          let result = await Moralis.transfer(options)
+      }
+  
   async function disconnect() {
     try {
       deactivate()
@@ -90,6 +117,9 @@ export default function Home() {
         <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
       </Box>
       <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send ONE</button>
+      <button onClick={sendXya} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send XYA</button>
+      <button onClick={sendYin} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send YIN</button>
+      <button onClick={sendYang} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send YANG</button>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
     </div>
   )
