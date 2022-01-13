@@ -6,7 +6,10 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import React, { useEffect , useState} from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 export default function Home() {
@@ -48,6 +51,12 @@ export default function Home() {
     setNumber(e.target.value)
   }
 
+  const [sendTok, setSendTok] = React.useState('');
+
+  const handleChange = (event) => {
+    setSendTok(event.target.value);
+  };
+
   Moralis.enableWeb3();
 
   async function sendOne(){
@@ -69,6 +78,7 @@ export default function Home() {
       });
   }
 
+  
   async function sendXya(){
       const options = {type: "erc20", 
         amount: Moralis.Units.Token(number, "18"), 
@@ -100,6 +110,9 @@ export default function Home() {
           contractAddress: "0x72Cb10C6bfA5624dD07Ef608027E366bd690048F"}
         let result = await Moralis.transfer(options)
     }
+
+
+
   
   async function disconnect() {
     try {
@@ -123,11 +136,24 @@ export default function Home() {
       >
         <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
       </Box>
-      <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send ONE</button>
-      <button onClick={sendXya} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send XYA</button>
-      <button onClick={sendYin} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send YIN</button>
-      <button onClick={sendYang} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send YANG</button>
-      <button onClick={sendJewel} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send JEWEL</button>
+      <Box sx={{ m: 1, width: '25ch'  }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Select token to send</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={sendTok}
+          label="SendTok"
+          onChange={handleChange}
+        >
+          <MenuItem value={sendOne}>Send ONE</MenuItem>
+          <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
+          <MenuItem value={sendXya}>Send XYA</MenuItem>
+          <MenuItem value={sendYin}>Send YIN</MenuItem>
+          <MenuItem value={sendYang}>Send Yang</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
     </div>
   )
