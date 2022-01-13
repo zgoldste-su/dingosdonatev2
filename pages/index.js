@@ -39,31 +39,6 @@ export default function Home() {
       console.log(ex)
     }
   }
-
-//testt
-
-  async function sendEth(){
-
-    const transactionParameters = {
-      //nonce: '0x00', // ignored by MetaMask
-      //gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
-      //gas: '0x2710', // customizable by user during MetaMask confirmation.
-      to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
-      from: ethereum.selectedAddress, // must match user's active address.
-      value: '0x' + (50000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
-      chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
-    };
-
-    
-  
-      const txHash = await ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [transactionParameters],
-      });
-  }
-  
-
-
  
 
   async function sendOne(){
@@ -88,22 +63,6 @@ export default function Home() {
 
 
 
-
-  /* async function sendOne(){
-      
-
-    const oneToken = {type: "erc20", 
-      amount: Moralis.Units.Token("3", "18"), 
-      receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
-      contractAddress: "0xcf664087a5bb0237a0bad6742852ec6c8d69a27a"}
-
-    // sending 0.5 tokens with 18 decimals
-    const web3 = await Moralis.enableWeb3();
-    //const contract = new web3.eth.Contract(contractAbi, contractAddress);
-     
-    let result = await Moralis.transfer(oneToken)
-  } */
-
     
   async function disconnect() {
     try {
@@ -118,8 +77,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center">
       <button onClick={connect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Connect to MetaMask</button>
-      {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected</span>}
-      <button onClick={sendEth} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send 0.05 ETH</button>
+      {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, Please change to Harmony Mainnet</span>}
       <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send 5 ONE</button>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
     </div>
