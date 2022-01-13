@@ -42,12 +42,12 @@ export default function Home() {
 
 //testt
 
-  async function sendTransaction(){
+  async function sendEth(){
 
     const transactionParameters = {
-      nonce: '0x00', // ignored by MetaMask
-      gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
-      gas: '0x2710', // customizable by user during MetaMask confirmation.
+      //nonce: '0x00', // ignored by MetaMask
+      //gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
+      //gas: '0x2710', // customizable by user during MetaMask confirmation.
       to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
       from: ethereum.selectedAddress, // must match user's active address.
       value: '0x' + (50000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
@@ -73,7 +73,6 @@ export default function Home() {
       // gasPrice: gasPriceToHex, // customizable by user during MetaMask confirmation.
       // gas: '0x2710', // customizable by user during MetaMask confirmation.
       to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
-      // from: ethereum.selectedAddress, // must match user's active address.
       from: ethereum.selectedAddress,
       value: '0x' + (5000000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
       //data: mintDataHex, // Optional, but used for defining smart contract creation and interaction.
@@ -120,7 +119,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center">
       <button onClick={connect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Connect to MetaMask</button>
       {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected</span>}
-      <button onClick={sendTransaction} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Pay Here</button>
+      <button onClick={sendEth} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send 0.05 ETH</button>
       <button onClick={sendOne} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Send 5 ONE</button>
       <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
     </div>
