@@ -18,6 +18,7 @@ export default function Home() {
   const { ethers } = require("ethers");
   //const EthVal = require('ethval')
   const Moralis = require('moralis')
+  const BigNumber = require('bignumber.js');
 
   var Eth = require('web3');
   var Web3 = require('web3');
@@ -87,7 +88,7 @@ export default function Home() {
   
   async function sendXya(){
       const options = {type: "erc20", 
-        amount: Moralis.Units.Token(number, "1"), 
+        amount: Moralis.Units.Token(new BigNumber(number), "18"), 
         receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
         contractAddress: "0x9b68BF4bF89c115c721105eaf6BD5164aFcc51E4"}
       let result = await Moralis.transfer(options)
