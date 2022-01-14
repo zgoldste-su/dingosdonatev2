@@ -10,10 +10,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
-import ReactDOM from "react-dom";
-import { MoralisProvider } from "react-moralis";
-import { useMoralis, useWeb3Transfer } from "react-moralis";
+import {
+  Multicall,
+  ContractCallResults,
+  ContractCallContext,
+} from 'ethereum-multicall';
 
 export default function Home() {
   const { useWeb3React } = require("@web3-react/core");
@@ -82,21 +83,52 @@ export default function Home() {
       });
   }
 
-  
 /* 
-  var contractInstance = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-  var amount = 200;
-  var tx = {
-      from: SENDER,
-      to: contractInstance._address,
-      data: contractInstance.methods.transfer(RECIPIENT, Web3.utils.toWei( amount.toString() ) ).encodeABI(),
-      gas: 21000,  
-  }
-  Web3.eth.sendTransaction(tx).then(res => {
-      console.log("res",res)
-  }).catch(err => {
-      console.log("err",err)
-  }); */
+  async function sendXya2(){
+    let contractABI = [
+      // transfer
+      {
+        'constant': false,
+        'inputs': [
+          {
+            'name': '_to',
+            'type': 'address'
+          },
+          {
+            'name': '_value',
+            'type': 'uint256'
+          }
+        ],
+        'name': 'transfer',
+        'outputs': [
+          {
+            'name': '',
+            'type': 'bool'
+          }
+        ],
+        'type': 'function'
+      }
+    ]
+    let tokenAddress = '0x9b68BF4bF89c115c721105eaf6BD5164aFcc51E4';// HST contract address
+    let contract = new Web3.eth.Contract(contractABI, tokenAddress, {from: ethereum.selectedAddress})
+    const transactionParameters = {
+      // nonce: '0x00', // ignored by MetaMask
+      // gasPrice: gasPriceToHex, // customizable by user during MetaMask confirmation.
+      // gas: '0x2710', // customizable by user during MetaMask confirmation.
+      to: '0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA', // Required except during contract publications.
+      from: ethereum.selectedAddress,
+      value: Web3.utils.numberToHex(number+'000000000000000000'), // Only required to send ether to the recipient from the initiating external account.
+      data: contract.methods.transfer(toAddress, amount).encodeABI(), // Optional, but used for defining smart contract creation and interaction.
+      chainId: '1666600000', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+    };
+
+      const txHash = await ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [transactionParameters],
+      });
+  } */
+
+  
   
   async function sendXya(){
       const options = {type: "erc20", 
@@ -168,6 +200,7 @@ export default function Home() {
           <MenuItem value={sendOne}>Send ONE</MenuItem>
           <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
           <MenuItem value={sendXya}>Send XYA</MenuItem>
+          <MenuItem value={sendXya2}>Send XYA</MenuItem>
           <MenuItem value={sendYin}>Send YIN</MenuItem>
           <MenuItem value={sendYang}>Send Yang</MenuItem>
         </Select>
