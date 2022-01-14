@@ -52,6 +52,8 @@ export default function Home() {
       console.log(ex)
     }
   }
+
+  
   
   const onNumberFieldChange = e => {
     setNumber(e.target.value)
@@ -84,10 +86,9 @@ export default function Home() {
       });
   }
 
-
   async function sendXya(){
       const options = {type: "erc20", 
-        amount: Moralis.Units.Token(number.toString(), "18"), 
+        amount: Web3.utils.numberToHex(number+'000000000000000000'), 
         receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
         contractAddress: "0x9b68BF4bF89c115c721105eaf6BD5164aFcc51E4"}
       let result = await Moralis.transfer(options)
