@@ -163,7 +163,7 @@ export default function Home() {
           noValidate
           autoComplete="off"
       >
-        <TextField id="outlined-basic" label="Enter custom token address" variant="outlined" margin="normal" type={"string"} onChange={onAddrFieldChange} />
+        <TextField id="outlined-basic" label="Enter custom token address or leave blank" variant="outlined" margin="normal" type={"string"} onChange={onAddrFieldChange} />
       </Box>
       <Box sx={{ m: 1, width: '25ch'  }}>
       <FormControl fullWidth>
