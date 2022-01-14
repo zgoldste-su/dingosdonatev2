@@ -157,49 +157,51 @@ export default function Home() {
   } 
 
   return (
+    
     <div className="flex flex-col items-center justify-center">
-      <button onClick={connect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Connect to MetaMask</button>
-      {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, please change to Harmony Mainnet</span>}
-      <Box
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-          }}
-          noValidate
-          autoComplete="off"
-      >
-        <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
-      </Box>
-      <Box
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-          }}
-          noValidate
-          autoComplete="off"
-      >
-        <TextField id="outlined-basic" label="Enter custom token address or leave blank" variant="outlined" margin="normal" type={"string"} onChange={onAddrFieldChange} />
-      </Box>
-      <Box sx={{ m: 1, width: '25ch'  }}>
-      <FormControl fullWidth>
-        <InputLabel id="select-token-label">Select Token</InputLabel>
-        <Select
-          labelId="select-token-label"
-          id="select-token"
-          value={sendTok}
-          label="SendTok"
-          onChange={handleChange}
-        >
-          <MenuItem value={sendOne}>Send ONE</MenuItem>
-          <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
-          <MenuItem value={sendXya}>Send XYA</MenuItem>
-          <MenuItem value={sendYin}>Send YIN</MenuItem>
-          <MenuItem value={sendYang}>Send Yang</MenuItem>
-          <MenuItem value={sendCust}>Send Custom Token</MenuItem>
-        </Select>
-      </FormControl>
+    <button onClick={connect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Connect to MetaMask</button>
+    {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, please change to Harmony Mainnet</span>}
+    <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+    >
+      <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
     </Box>
-      <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
-    </div>
+    <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+    >
+      <TextField id="outlined-basic" label="Enter custom token address or leave blank" variant="outlined" margin="normal" type={"string"} onChange={onAddrFieldChange} />
+    </Box>
+    <Box sx={{ m: 1, width: '25ch'  }}>
+    <FormControl fullWidth>
+      <InputLabel id="select-token-label">Select Token</InputLabel>
+      <Select
+        labelId="select-token-label"
+        id="select-token"
+        value={sendTok}
+        label="SendTok"
+        onChange={handleChange}
+      >
+        <MenuItem value={sendOne}>Send ONE</MenuItem>
+        <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
+        <MenuItem value={sendXya}>Send XYA</MenuItem>
+        <MenuItem value={sendYin}>Send YIN</MenuItem>
+        <MenuItem value={sendYang}>Send Yang</MenuItem>
+        <MenuItem value={sendCust}>Send Custom Token</MenuItem>
+      </Select>
+    </FormControl>
+  </Box>
+    <button onClick={disconnect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Disconnect</button>
+  </div>
+    
   )
 }
