@@ -200,7 +200,7 @@ export default function Home() {
           <MenuItem value={sendOne}>Send ONE</MenuItem>
           <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
           <MenuItem value={sendXya}>Send XYA</MenuItem>
-          <MenuItem value={sendXya2}>Send XYA</MenuItem>
+          {/* <MenuItem value={sendXya2}>Send XYA</MenuItem> */}
           <MenuItem value={sendYin}>Send YIN</MenuItem>
           <MenuItem value={sendYang}>Send Yang</MenuItem>
         </Select>
