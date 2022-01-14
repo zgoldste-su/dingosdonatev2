@@ -96,7 +96,7 @@ export default function Home() {
   
   async function sendYin(){
         const options = {type: "erc20", 
-          amount: Moralis.Units.Token(number, "18"), 
+          amount: Web3.utils.numberToHex(number+'000000000000000000'), 
           receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
           contractAddress: "0xE59AA7f9e91B4Cc6C25D3542CEcb851e0316138c"}
         let result = await Moralis.transfer(options)
@@ -104,7 +104,7 @@ export default function Home() {
 
     async function sendYang(){
           const options = {type: "erc20", 
-            amount: Moralis.Units.Token(number, "18"), 
+            amount: Web3.utils.numberToHex(number+'000000000000000000'), 
             receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
             contractAddress: "0x340042552D19211795dbe55d84FA2E63bc49B890"}
           let result = await Moralis.transfer(options)
@@ -112,7 +112,7 @@ export default function Home() {
 
       async function sendJewel(){
         const options = {type: "erc20", 
-          amount: Moralis.Units.Token(number, "18"), 
+          amount: Web3.utils.numberToHex(number+'000000000000000000'), 
           receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
           contractAddress: "0x72Cb10C6bfA5624dD07Ef608027E366bd690048F"}
         let result = await Moralis.transfer(options)
