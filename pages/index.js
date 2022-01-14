@@ -31,9 +31,9 @@ export default function Home() {
 
   const [number, setNumber] = useState(0);
   
-  ethereum = window.ethereum;
 
-  /* useEffect(function mount() {
+  
+  useEffect(function mount() {
     function onScroll() {
       console.log("scroll!");
     }
@@ -43,7 +43,7 @@ export default function Home() {
     return function unMount() {
       window.removeEventListener("scroll", onScroll);
     };
-  }); */
+  });
 
   async function connect() {
     try {
