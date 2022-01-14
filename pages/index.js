@@ -30,7 +30,7 @@ export default function Home() {
   var ethereum;
 
   const [number, setNumber] = useState(0);
-  
+  const [addr, setAddr] = useState(0);
 
   
   useEffect(function mount() {
@@ -57,6 +57,10 @@ export default function Home() {
   
   const onNumberFieldChange = e => {
     setNumber(e.target.value)
+  }
+
+  const onAddrFieldChange = e => {
+    setAddr(e.target.value)
   }
 
   const [sendTok, setSendTok] = React.useState('');
@@ -118,6 +122,14 @@ export default function Home() {
         let result = await Moralis.transfer(options)
     }
 
+    async function sendCust(){
+      const options = {type: "erc20", 
+        amount: Web3.utils.numberToHex(number+'000000000000000000'), 
+        receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
+        contractAddress: addr}
+      let result = await Moralis.transfer(options)
+  }
+  
 
 
   
@@ -143,6 +155,16 @@ export default function Home() {
       >
         <TextField id="outlined-basic" label="Enter Amount" variant="outlined" margin="normal" type={"number"} onChange={onNumberFieldChange} />
       </Box>
+      <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+      >
+        <TextField id="outlined-basic" label="Enter custom token address" variant="outlined" margin="normal" type={"string"} onChange={onAddrFieldChange} />
+      </Box>
       <Box sx={{ m: 1, width: '25ch'  }}>
       <FormControl fullWidth>
         <InputLabel id="select-token-label">Select Token</InputLabel>
@@ -158,6 +180,7 @@ export default function Home() {
           <MenuItem value={sendXya}>Send XYA</MenuItem>
           <MenuItem value={sendYin}>Send YIN</MenuItem>
           <MenuItem value={sendYang}>Send Yang</MenuItem>
+          <MenuItem value={sendCust}>Send Custom Token</MenuItem>
         </Select>
       </FormControl>
     </Box>
