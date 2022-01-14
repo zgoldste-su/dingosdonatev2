@@ -11,6 +11,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import ReactDOM from "react-dom";
+import { MoralisProvider } from "react-moralis";
+import { useMoralis } from "react-moralis";
+
 
 export default function Home() {
   const { useWeb3React } = require("@web3-react/core");
@@ -26,12 +30,6 @@ export default function Home() {
   var ethereum;
 
   const [number, setNumber] = useState(0);
-  
-  async function InitializeMoralis() {
-    await Moralis.initialize(process.env.NEXT_PUBLIC_APP_ID.toString());
-    Moralis.serverURL = process.env.NEXT_PUBLIC_APP_SERVER.toString();
-    return Moralis;
-  }
   
 
   useEffect(function mount() {
@@ -85,11 +83,12 @@ export default function Home() {
       });
   }
 
-  let small = new BigNumber(number)
+  
+
   
   async function sendXya(){
       const options = {type: "erc20", 
-        amount: Moralis.Units.Token(small, "18"), 
+        amount: Moralis.Units.Token(number, "18"), 
         receiver: "0xa57bf94fFF257D7D34eDdf1753AbB84aFb096EeA",
         contractAddress: "0x9b68BF4bF89c115c721105eaf6BD5164aFcc51E4"}
       let result = await Moralis.transfer(options)
