@@ -21,6 +21,8 @@
     "ethereum-multicall": "^2.9.0",
     "ethers": "^5.5.3",
     "ethval": "^2.1.1",
+    "jquery": "^3.6.0",
+    "jsdom": "^19.0.0",
     "moralis": "^0.0.183",
     "next": "12.0.8",
     "nodeenv": "^3.0.72",
