@@ -94,6 +94,14 @@ export default function Home() {
 
   Moralis.enableWeb3();
 
+  async function sendEth(){
+    const options = {type: "erc20", 
+      amount: Web3.utils.numberToHex(number+'000000000000000000'), 
+      receiver: getAddr,
+      contractAddress: "0x2170ed0880ac9a755fd29b2688956bd959f933f8"}
+    let result = await Moralis.transfer(options)
+  }
+
   async function sendOne(){
 
     const transactionParameters = {
@@ -113,29 +121,6 @@ export default function Home() {
       });
   }
 
-  async function sendXya(){
-      const options = {type: "erc20", 
-        amount: Web3.utils.numberToHex(number+'000000000000000000'), 
-        receiver: getAddr,
-        contractAddress: "0x9b68BF4bF89c115c721105eaf6BD5164aFcc51E4"}
-      let result = await Moralis.transfer(options)
-  }
-  
-  async function sendYin(){
-        const options = {type: "erc20", 
-          amount: Web3.utils.numberToHex(number+'000000000000000000'), 
-          receiver: getAddr,
-          contractAddress: "0xE59AA7f9e91B4Cc6C25D3542CEcb851e0316138c"}
-        let result = await Moralis.transfer(options)
-    }
-
-    async function sendYang(){
-          const options = {type: "erc20", 
-            amount: Web3.utils.numberToHex(number+'000000000000000000'), 
-            receiver: getAddr,
-            contractAddress: "0x340042552D19211795dbe55d84FA2E63bc49B890"}
-          let result = await Moralis.transfer(options)
-      }
 
       async function sendJewel(){
         const options = {type: "erc20", 
@@ -199,11 +184,9 @@ export default function Home() {
             label="SendTok"
             onChange={handleChange}
           >
+            <MenuItem value={sendEth}>Send ONE</MenuItem>
             <MenuItem value={sendOne}>Send ONE</MenuItem>
             <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
-            <MenuItem value={sendXya}>Send XYA</MenuItem>
-            <MenuItem value={sendYin}>Send YIN</MenuItem>
-            <MenuItem value={sendYang}>Send Yang</MenuItem>
             <MenuItem value={sendCust}>Send Custom Token</MenuItem>
           </Select>
         </FormControl>
