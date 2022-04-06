@@ -152,7 +152,7 @@ export default function Home() {
   return (
         <div className="flex flex-col items-center justify-center">
         <button onClick={connect} className="py-2 mt-20 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-blue-600 hover:bg-blue-800">Connect to MetaMask</button>
-        {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, please change to Harmony Mainnet</span>}
+        {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected, please change to Ethereum or Harmony</span>}
         {active ? <span>Sending to <b>{getAddr}</b></span> : <span>Please enter an 0x address in the url after the /?addr=</span>}
         <Box
             component="form"
@@ -185,7 +185,7 @@ export default function Home() {
             onChange={handleChange}
           >
             <MenuItem value={sendEth}>Send ONE</MenuItem>
-            <MenuItem value={sendOne}>Send ONE</MenuItem>
+            <MenuItem value={sendOne}>Send ETH</MenuItem>
             <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
             <MenuItem value={sendCust}>Send Custom Token</MenuItem>
           </Select>
