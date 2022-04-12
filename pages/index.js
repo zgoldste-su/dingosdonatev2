@@ -102,6 +102,14 @@ export default function Home() {
     let result = await Moralis.transfer(options)
   }
 
+  async function sendMatic(){
+    const options = {type: "erc20", 
+      amount: Web3.utils.numberToHex(number+'000000000000000000'), 
+      receiver: getAddr,
+      contractAddress: "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0"}
+    let result = await Moralis.transfer(options)
+  }
+
   async function sendOne(){
 
     const transactionParameters = {
@@ -185,6 +193,7 @@ export default function Home() {
             onChange={handleChange}
           >
             <MenuItem value={sendEth}>Send ONE</MenuItem>
+            <MenuItem value={sendMatic}>Send MATIC</MenuItem>
             <MenuItem value={sendOne}>Send ETH</MenuItem>
             <MenuItem value={sendJewel}>Send JEWEL</MenuItem>
             <MenuItem value={sendCust}>Send Custom Token</MenuItem>
